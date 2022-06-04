@@ -71,9 +71,44 @@ export const usesAvailableLetters = (input, lettersInHand) => {
 };
 
 export const scoreWord = (word) => {
-  // Implement this method for wave 3
+  let score = 0;
+  for (const letter of word.toUpperCase()) {
+    score += availableLetters[letter][1];
+  }
+  if (word.length >= 7) {
+    score += 8;
+  }
+  return score;
 };
 
 export const highestScoreFrom = (words) => {
-  // Implement this method for wave 1
+  let scores = [];
+  let topScoringWords = [];
+
+  for (const word of words) {
+    const wordScore = scoreWord(word);
+    scores.push(wordScore);
+  }
+
+  const maxScore = Math.max(...scores);
+
+  for (let i = 0; i < scores.length; ++i) {
+    if (scores[i] === maxScore) {
+      topScoringWords.push(words[i]);
+    }
+  }
+  // if longest word is 10 letters long, that wins
+  //otherwise shortest word wins
+  let topWord = topScoringWords[0];
+
+  for (const word of topScoringWords) {
+    if (word.length === 10) {
+      topWord = word;
+      break;
+    } else if (word.length < topWord.length) {
+      topWord = word;
+    }
+  }
+
+  return { word: topWord, score: maxScore };
 };
