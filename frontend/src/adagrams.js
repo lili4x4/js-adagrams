@@ -1,7 +1,7 @@
 const alphabet =
   "AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ";
 
-const availableLetters = {
+export const availableLetters = {
   A: [9, 1],
   B: [2, 3],
   C: [2, 3],
@@ -81,15 +81,20 @@ export const scoreWord = (word) => {
   return score;
 };
 
-export const highestScoreFrom = (words) => {
+const scoresList = (words) => {
   let scores = [];
-  let topScoringWords = [];
 
   for (const word of words) {
     const wordScore = scoreWord(word);
     scores.push(wordScore);
   }
 
+  return scores;
+};
+
+const topScoringWords = (words) => {
+  let topScoringWords = [];
+  const scores = scoresList(words);
   const maxScore = Math.max(...scores);
 
   for (let i = 0; i < scores.length; ++i) {
@@ -97,11 +102,17 @@ export const highestScoreFrom = (words) => {
       topScoringWords.push(words[i]);
     }
   }
-  // if longest word is 10 letters long, that wins
-  //otherwise shortest word wins
-  let topWord = topScoringWords[0];
+  return topScoringWords;
+};
 
-  for (const word of topScoringWords) {
+export const highestScoreFrom = (words) => {
+  const topWords = topScoringWords(words);
+  const scores = scoresList(words);
+  const maxScore = Math.max(...scores);
+
+  let topWord = topWords[0];
+
+  for (const word of topWords) {
     if (word.length === 10) {
       topWord = word;
       break;
