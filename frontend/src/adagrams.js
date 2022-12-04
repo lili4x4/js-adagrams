@@ -59,10 +59,11 @@ export const drawLetters = () => {
 };
 
 export const usesAvailableLetters = (input, lettersInHand) => {
+  let lettersInHandCopy = [...lettersInHand];
   for (const letter of input.toUpperCase()) {
-    if (lettersInHand.includes(letter)) {
-      const letterIndex = lettersInHand.indexOf(letter);
-      lettersInHand.splice(letterIndex, 1);
+    if (lettersInHandCopy.includes(letter)) {
+      const letterIndex = lettersInHandCopy.indexOf(letter);
+      lettersInHandCopy.splice(letterIndex, 1);
     } else {
       return false;
     }

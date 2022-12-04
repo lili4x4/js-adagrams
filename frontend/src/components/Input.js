@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { usesAvailableLetters, scoreWord } from "../adagrams";
 
-const Input = ({ setWord, setAnagrams, anagrams, hand }) => {
+const Input = ({ setAnagrams, anagrams, hand, setErrorMessage }) => {
   const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+    setErrorMessage("");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +18,7 @@ const Input = ({ setWord, setAnagrams, anagrams, hand }) => {
       setAnagrams(newAnagramsData);
       setInput("");
     } else {
-      console.log("Use available letters!");
+      setErrorMessage("Use available letters!");
       setInput("");
     }
   };
@@ -21,11 +26,7 @@ const Input = ({ setWord, setAnagrams, anagrams, hand }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
+          <input type="text" value={input} onChange={handleChange} />
         </label>
       </form>
     </div>

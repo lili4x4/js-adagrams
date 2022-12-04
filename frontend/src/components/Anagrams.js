@@ -9,7 +9,7 @@ const Anagrams = ({ anagrams, setAnagrams }) => {
   });
   return (
     <div id="letter-scores">
-      <h3>Scoring</h3>
+      <h3>Scores</h3>
       {allAnagrams}
     </div>
   );
