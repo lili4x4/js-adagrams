@@ -32,7 +32,12 @@ function App() {
       <section className="letter-scores">
         <LetterScores />
       </section>
-      <DrawButton setHand={setHand} setHandDisplay={setHandDisplay} />
+      <DrawButton
+        setHand={setHand}
+        setHandDisplay={setHandDisplay}
+        setAnagrams={setAnagrams}
+        setErrorMessage={setErrorMessage}
+      />
     </div>
   );
 }

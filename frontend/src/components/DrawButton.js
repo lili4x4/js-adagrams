@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import "./DrawButton.css";
 import { drawLetters } from "../adagrams";
 
-const DrawButton = ({ setHand, setHandDisplay }) => {
+const DrawButton = ({
+  setHand,
+  setHandDisplay,
+  setAnagrams,
+  setErrorMessage,
+}) => {
   const buttonClick = () => {
     const letters = drawLetters();
     setHand(letters);
@@ -12,6 +17,8 @@ const DrawButton = ({ setHand, setHandDisplay }) => {
         return <text>{letter} </text>;
       })
     );
+    setAnagrams({});
+    setErrorMessage("");
   };
   return <button onClick={buttonClick}>Draw</button>;
 };

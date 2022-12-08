@@ -18,6 +18,11 @@
 
 #hand{
   color: whitesmoke;
+  min-height: 5%;
+}
+
+#error-message{
+  min-height: 5%;
 }
 
 #anagrams{
